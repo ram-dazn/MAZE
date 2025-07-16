@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teak_light">#D2B48C</color>     <!-- Light highlight -->
+    <color name="teak">#A67B5B</color>           <!-- Primary -->
+    <color name="teak_dark">#6F4E37</color>      <!-- Dark shade -->
+
+    <color name="teal_200">#FFFFFF</color>       <!-- white alternative -->
+    <color name="teal_700">#FFFFFF</color>       <!-- white alternative -->
+
+    <color name="black">#6F4E37</color>          <!-- teak_dark used as "black" -->
+    <color name="white">#FFFFFF</color>
+</resources>
