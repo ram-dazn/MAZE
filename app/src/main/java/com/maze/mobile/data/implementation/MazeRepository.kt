@@ -3,17 +3,18 @@ package com.maze.mobile.data.implementation
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.maze.mobile.data.api.MazeApi
+import com.maze.mobile.data.api.NetworkConnectionApi
 import com.maze.mobile.data.mapper.toDomain
 import com.maze.mobile.domain.api.MazeRepositoryApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.net.HttpURLConnection
 import java.net.URL
 import javax.inject.Inject
 
 class MazeRepository @Inject constructor(
-    private val mazeApi: MazeApi
-): MazeRepositoryApi {
+    private val mazeApi: MazeApi,
+    private val networkConnection: NetworkConnectionApi,
+) : MazeRepositoryApi {
 
     override suspend fun fetchMazes() =
         mazeApi.getMazes().toDomain()
@@ -21,9 +22,9 @@ class MazeRepository @Inject constructor(
     override suspend fun fetchMazeBitmap(encodedUrl: String): Bitmap {
         val url = URL(encodedUrl)
 
-        val connection = (withContext(Dispatchers.IO) {
-            url.openConnection()
-        } as HttpURLConnection).apply {
+        val connection = withContext(Dispatchers.IO) {
+            networkConnection.openConnection(url)
+        }.apply {
             connectTimeout = 10_000
             readTimeout = 10_000
             doInput = true

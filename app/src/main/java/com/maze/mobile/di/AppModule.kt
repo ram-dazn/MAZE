@@ -2,7 +2,9 @@ package com.maze.mobile.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.maze.mobile.data.api.MazeApi
+import com.maze.mobile.data.api.NetworkConnectionApi
 import com.maze.mobile.data.implementation.AndroidMazeParser
+import com.maze.mobile.data.implementation.DefaultNetworkConnection
 import com.maze.mobile.data.implementation.MazeRepository
 import com.maze.mobile.domain.api.MazeParserApi
 import com.maze.mobile.domain.api.MazeRepositoryApi
@@ -30,6 +32,11 @@ abstract class AppModule {
     abstract fun bindMazeParser(
         impl: AndroidMazeParser,
     ): MazeParserApi
+
+    @Binds
+    abstract fun bindNetworkConnection(
+        impl: DefaultNetworkConnection,
+    ): NetworkConnectionApi
 }
 
 @Module

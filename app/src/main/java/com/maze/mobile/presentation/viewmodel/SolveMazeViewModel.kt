@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SolveMazeViewModel @Inject constructor(
     private val getBitmap: GetBitmapUseCase,
-    private val getSolvedBitmapUseCase: GetSolvedBitmapUseCase,
+    private val getSolvedBitmap: GetSolvedBitmapUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
@@ -26,7 +26,7 @@ class SolveMazeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val bitmap = getBitmap(url)
-                val solvedBitmap = getSolvedBitmapUseCase(bitmap)
+                val solvedBitmap = getSolvedBitmap(bitmap)
                 _uiState.value = UiState.Success(solvedBitmap)
             } catch (e: Exception) {
                 _uiState.value = UiState.Error
