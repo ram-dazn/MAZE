@@ -31,13 +31,14 @@ class MazeListViewModel @Inject constructor(
                     _uiState.value = UiState.Success(mazes)
                 }
                 .onFailure {
-                    // Optional: add error state
+                    _uiState.value = UiState.Error
                 }
         }
     }
 
     sealed interface UiState {
         data object Loading : UiState
+        data object Error : UiState
         data class Success(val mazeList: MazeList) : UiState
     }
 }

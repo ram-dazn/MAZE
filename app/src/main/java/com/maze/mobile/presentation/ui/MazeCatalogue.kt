@@ -34,6 +34,7 @@ import com.maze.mobile.domain.model.MazeList
 import com.maze.mobile.presentation.viewmodel.MazeListViewModel
 import com.maze.mobile.presentation.viewmodel.MazeListViewModel.UiState.Loading
 import com.maze.mobile.presentation.viewmodel.MazeListViewModel.UiState.Success
+import com.maze.mobile.presentation.viewmodel.MazeListViewModel.UiState.Error
 
 @Composable
 fun MazeCatalogue(
@@ -50,8 +51,14 @@ fun MazeCatalogue(
             val success = (uiState as Success)
             Catalogue(success.mazeList, onClick)
         }
-        // Optional
-        // is UiState.Error -> { ErrorState() }
+        is Error -> {
+            Text(
+                text = "No maze available right now.",
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
     }
 }
 
