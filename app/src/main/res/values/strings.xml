@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MAZE</string>
+    <string name="home_title">Let\'s Solve Maze</string>
 </resources>
